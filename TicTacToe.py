@@ -9,7 +9,6 @@ def displayBoard(status):
     return None
 
 
-#TODO: Add a guide which tells what number represents which spot
 def getUserPlay(boardstatus):
     print("\nYour turn!")
     print("Pick your spot with a number between 1 - 9")
@@ -23,25 +22,16 @@ def getUserPlay(boardstatus):
                 print("Choose between numbers 1 - 9.")
             elif boardstatus[index] == "-":
                 boardstatus[index] = "X"
-                return boardstatus
+                break
             else:
                 print("That spot is already taken, please pick another one.\n")
         except ValueError:
             print("Please give your choice as an integer!\n")
         except IndexError:
             print("Choose between numbers 1 - 9.\n")
+    return boardstatus
+    
 
-
-def aiTurnRandom(boardstatus):
-    print("\nAI turn!")
-    while(True):
-        userInput = randint(1, 9)
-        index = int(userInput) - 1
-        if boardstatus[index] == "-":
-            boardstatus[index] = "O"
-            return boardstatus
-        else:
-            continue
 
 def checkForWin(boardstatus):
     # windexes = winning indexes
@@ -134,6 +124,7 @@ def aiTurn(boardstatus):
     print("Ai turn! \n")
     bestMove = findBestMove(boardstatus)
     boardstatus[bestMove] = "O"
+    return boardstatus
 
 
 
@@ -166,7 +157,6 @@ def main():
             gameOn = False
             displayBoard(boardstatus)
             print(f"{winner} wins the game!")
-
         
 
 if __name__ == "__main__":
